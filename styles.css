@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  #todo-list {
+    margin-top: 20px;
+  }
+  
+  #todo-list li {
+    margin-bottom: 10px;
+  }
+  
+  #todo-list li input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
+  #todo-list li .task-label {
+    display: inline-block;
+  }
+  
+  #todo-list li .delete-button {
+    margin-left: 10px;
+  }
+  
+  #add-task input[type="text"] {
+    width: 200px;
+    padding: 5px;
+  }
+  
+  #add-task input[type="submit"] {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }

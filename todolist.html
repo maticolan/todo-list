@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To-Do List</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <h1>To-Do List</h1>
+  
+  <div id="add-task">
+    <form onsubmit="addTask(event)">
+      <input type="text" id="task-input" placeholder="Enter a task..." required>
+      <input type="submit" value="Add Task">
+    </form>
+  </div>
+  
+  <ol id="todo-list"></ol>
+  
+  <button onclick="completeAllTasks()">Complete All</button>
+  
+  <script>
+    function addTask(event) {
+      event.preventDefault();
+      
+      const taskInput = document.getElementById('task-input');
+      const taskText = taskInput.value.trim();
+      
+      if (taskText !== '') {
+        const taskItem = document.createElement('li');
+        const checkbox = document.createElement('input');
+        checkbox.setAttribute('type', 'checkbox');
+        checkbox.addEventListener('click', completeTask);
+        
+        const taskLabel = document.createElement('label');
+        taskLabel.innerText = taskText;
+        taskLabel.classList.add('task-label');
+        
+        const deleteButton = document.createElement('button');
+        deleteButton.innerText = 'X';
+        deleteButton.addEventListener('click', deleteTask);
+        deleteButton.classList.add('delete-button');
+        
+        taskItem.appendChild(checkbox);
+        taskItem.appendChild(taskLabel);
+        taskItem.appendChild(deleteButton);
+        document.getElementById('todo-list').appendChild(taskItem);
+        
+        taskInput.value = '';
+      }
+    }
+    
+    function completeTask(event) {
+      const checkbox = event.target;
+      const taskLabel = checkbox.nextElementSibling;
+      
+      if (checkbox.checked) {
+        taskLabel.style.textDecoration = 'line-through';
+      } else {
+        taskLabel.style.textDecoration = 'none';
+      }
+    }
+    
+    function deleteTask(event) {
+      const taskItem = event.target.parentNode;
+      const todoList = document.getElementById('todo-list');
+      
+      todoList.removeChild(taskItem);
+    }
+    
+    function completeAllTasks() {
+      const checkboxes = document.querySelectorAll('#todo-list li input[type="checkbox"]');
+      
+      checkboxes.forEach(function(checkbox) {
+        checkbox.checked = true;
+        const taskLabel = checkbox.nextElementSibling;
+        taskLabel.style.textDecoration = 'line-through';
+      });
+    }
+  </script>
+</body>
+</html>
